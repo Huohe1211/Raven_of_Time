@@ -18,7 +18,7 @@ public class UI_Loading : MonoBehaviour
         {
             Hide();
             GameMgr.I.lvl_01.Show();
-
+            GameMgr.I.raven.Show();
 
             //Tempt===TODO
             UIMgr.I.ui_PnlX.AnimShowPnl_X();
