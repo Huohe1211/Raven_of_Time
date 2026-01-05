@@ -15,7 +15,7 @@ public class TimeBack : MonoBehaviour
     private bool isRewinding = false;
     private ObjectStage currentTarget;
     private Vector3 startPos;
-    
+    private bool hasUsed=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +50,7 @@ public class TimeBack : MonoBehaviour
         {
             currentGhost = Instantiate(ghostPrefab, transform.position, Quaternion.identity);
             ghostRenderer = currentGhost.GetComponent<SpriteRenderer>();
-
+            Debug.Log("开始回溯，这是唯一的一次机会！");
             // 重要：确保残影是运动学的，否则它会受重力掉下去
             var ghostRb = currentGhost.GetComponent<Rigidbody2D>();
             if (ghostRb != null) ghostRb.isKinematic = true;
@@ -83,8 +83,9 @@ public class TimeBack : MonoBehaviour
     void StopRewind()
     {
         isRewinding = false;
+        hasUsed = true;
         // 如果你希望重播完后残影消失，取消下面注释
-         if (currentGhost != null) Destroy(currentGhost); 
+        if (currentGhost != null) Destroy(currentGhost); 
     }
     void FixedUpdate()
     {
@@ -101,11 +102,20 @@ public class TimeBack : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) StartRewind();
-        if (Input.GetKeyDown(KeyCode.R))
+        
+        if (!hasUsed && Input.GetKeyDown(KeyCode.R))
         {
+            StartRewind();
             Debug.Log("R键已按下！当前记录帧数: " + timeBackData.Count);
             
+        }
+        
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log("回溯已耗尽，正在重置场景...");
+            }
         }
     }
 }
