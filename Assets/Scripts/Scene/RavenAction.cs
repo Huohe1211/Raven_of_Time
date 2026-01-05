@@ -12,6 +12,7 @@ public class RavenAction : MonoBehaviour
     public Transform foot;
     public bool grounded;
     public LayerMask ground;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,7 @@ public class RavenAction : MonoBehaviour
         ravenRB.velocity = new Vector2(ravenMoveSpeed * horizontalNum,ravenRB.velocity.y);
         if (faceNum!=0)
         {
-            transform.localScale = new Vector3((float)(0.8 * faceNum), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3((float)(1 * faceNum), transform.localScale.y, transform.localScale.z);
         }
         
     }

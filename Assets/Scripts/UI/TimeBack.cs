@@ -72,7 +72,7 @@ public class TimeBack : MonoBehaviour
                 currentGhost.transform.position = stage.Position;
             }
 
-            if (ghostRenderer != null) ghostRenderer.sprite = stage.Sprite;
+            if (ghostRenderer != null) //ghostRenderer.sprite = stage.Sprite;
             currentGhost.transform.localScale = new Vector3(stage.IsRight ? 1 : -1, 1, 1);
         }
         else
