@@ -8,7 +8,7 @@ public class UIMgr : MonoBehaviour
 
     public UI_Loading ui_Loading;
     public UI_PnlX ui_PnlX;
-
+    public Coin coin;
     private void Awake()
     {
         I = this;

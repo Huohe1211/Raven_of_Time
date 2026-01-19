@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D.IK;
@@ -6,7 +6,7 @@ using UnityEngine.U2D.IK;
 public class TimeBack : MonoBehaviour
 {
     private SpriteRenderer ghostRenderer;
-    public GameObject ghostPrefab; // ÓÃÓÚ»Ø·ÅµÄ²ÐÓ°ÎïÌå
+    public GameObject ghostPrefab; // ï¿½ï¿½ï¿½Ú»Ø·ÅµÄ²ï¿½Ó°ï¿½ï¿½ï¿½ï¿½
     private GameObject currentGhost;
     private Stack<ObjectStage> timeBackData = new Stack<ObjectStage>();
     private SpriteRenderer myRenderer;
@@ -26,16 +26,16 @@ public class TimeBack : MonoBehaviour
     }
     void Record()
     {
-        // ÏÞÖÆ¼ÇÂ¼³¤¶È£¨ÀýÈçÖ»¼Ç5Ãë£¬Ô¼300Ö¡£©£¬·ÀÖ¹ÄÚ´æÒç³ö
+        // ï¿½ï¿½ï¿½Æ¼ï¿½Â¼ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½5ï¿½ë£¬Ô¼300Ö¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½Ú´ï¿½ï¿½ï¿½ï¿½
         if (timeBackData.Count > 300)
         {
-            // ÕâÀï¿ÉÒÔ×öÒ»Ð©ÒÆ³ý¾ÉÊý¾ÝµÄ´¦Àí£¬»òÕß¼òµ¥Í£Ö¹Ôö¼Ó
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝµÄ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
         }
 
         timeBackData.Push(new ObjectStage(
             transform.position,
             myRenderer.sprite,
-            transform.localScale.x > 0, // ¼ÙÉèÄãÓÃscale¿ØÖÆ³¯Ïò
+            transform.localScale.x > 0, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½scaleï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½
             rb2D.velocity
         ));
     }
@@ -45,13 +45,13 @@ public class TimeBack : MonoBehaviour
 
         isRewinding = true;
 
-        // Éú³É²ÐÓ°
+        // ï¿½ï¿½ï¿½É²ï¿½Ó°
         if (ghostPrefab != null)
         {
             currentGhost = Instantiate(ghostPrefab, transform.position, Quaternion.identity);
             ghostRenderer = currentGhost.GetComponent<SpriteRenderer>();
-            Debug.Log("¿ªÊ¼»ØËÝ£¬ÕâÊÇÎ¨Ò»µÄÒ»´Î»ú»á£¡");
-            // ÖØÒª£ºÈ·±£²ÐÓ°ÊÇÔË¶¯Ñ§µÄ£¬·ñÔòËü»áÊÜÖØÁ¦µôÏÂÈ¥
+            Debug.Log("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½Ò»ï¿½Î»ï¿½ï¿½á£¡");
+            // ï¿½ï¿½Òªï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½Ë¶ï¿½Ñ§ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¥
             var ghostRb = currentGhost.GetComponent<Rigidbody2D>();
             if (ghostRb != null) ghostRb.isKinematic = true;
         }
@@ -62,7 +62,7 @@ public class TimeBack : MonoBehaviour
         {
             ObjectStage stage = timeBackData.Pop();
 
-            // Ê¹ÓÃÎïÀíÒÆ¶¯¶ø·ÇÖ±½ÓÐÞ¸Ä×ø±ê£¬±£Ö¤Åö×²ÉúÐ§
+            // Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½Ö¤ï¿½ï¿½×²ï¿½ï¿½Ð§
             if (ghostRb != null)
             {
                 ghostRb.MovePosition(stage.Position);
@@ -84,7 +84,7 @@ public class TimeBack : MonoBehaviour
     {
         isRewinding = false;
         hasUsed = true;
-        // Èç¹ûÄãÏ£ÍûÖØ²¥Íêºó²ÐÓ°ÏûÊ§£¬È¡ÏûÏÂÃæ×¢ÊÍ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½Ê§ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
         if (currentGhost != null) Destroy(currentGhost); 
     }
     void FixedUpdate()
@@ -106,7 +106,7 @@ public class TimeBack : MonoBehaviour
         if (!hasUsed && Input.GetKeyDown(KeyCode.R))
         {
             StartRewind();
-            Debug.Log("R¼üÒÑ°´ÏÂ£¡µ±Ç°¼ÇÂ¼Ö¡Êý: " + timeBackData.Count);
+            Debug.Log("Rï¿½ï¿½ï¿½Ñ°ï¿½ï¿½Â£ï¿½ï¿½ï¿½Ç°ï¿½ï¿½Â¼Ö¡ï¿½ï¿½:ä½ å¥½ " + timeBackData.Count);
             
         }
         
@@ -114,7 +114,7 @@ public class TimeBack : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log("»ØËÝÒÑºÄ¾¡£¬ÕýÔÚÖØÖÃ³¡¾°...");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ÑºÄ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½...");
             }
         }
     }
