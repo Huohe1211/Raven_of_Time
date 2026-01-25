@@ -9,13 +9,14 @@ public class UIMgr : MonoBehaviour
     public UI_Loading ui_Loading;
     public UI_PnlX ui_PnlX;
     public Coin coin;
+    public ScreenFade fade;
     private void Awake()
     {
         I = this;
 
         ui_Loading.Init();
         ui_PnlX.Init();
-
+        fade.Init();
 
 
     }

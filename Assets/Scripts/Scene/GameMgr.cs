@@ -8,11 +8,18 @@ public class GameMgr: MonoBehaviour
 
     public Lvl_01 lvl_01;
     public Raven raven;
+    public GameEventSystem gameEventSystem;
+
+
     private void Awake()
     {
         I = this;
         lvl_01.Init();
         raven.Init();
+        gameEventSystem.Init();
+
+
+
     }
 
 

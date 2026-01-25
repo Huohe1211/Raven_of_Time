@@ -11,19 +11,19 @@ public class RavenFlashOnCoin : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         originalColor = sr.color;
 
-        if (EventSystem.I == null)
+        if (GameEventSystem.I == null)
         {
             Debug.LogError("EventSystem missing for RavenFlash");
             return;
         }
 
-        EventSystem.I.OnCoinCollected += OnCoin;
+        GameEventSystem.I.OnCoinCollected += OnCoin;
     }
 
     void OnDestroy()
     {
-        if (EventSystem.I != null)
-            EventSystem.I.OnCoinCollected -= OnCoin;
+        if (GameEventSystem.I != null)
+            GameEventSystem.I.OnCoinCollected -= OnCoin;
     }
 
     void OnCoin(Vector3 pos, int value)

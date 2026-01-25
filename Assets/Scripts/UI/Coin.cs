@@ -16,9 +16,9 @@ public class Coin : MonoBehaviour
                 //[2]Change the value on the coin Pnl.
                 int result = UIMgr.I.ui_PnlX.GetCoinValue()+coinValue;
             
-            if (EventSystem.I != null)
+            if (GameEventSystem.I != null)
             {
-                EventSystem.I.OnCoinCollected?.Invoke(
+                GameEventSystem.I.OnCoinCollected?.Invoke(
                     transform.position,
                     coinValue
                 );

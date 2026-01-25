@@ -3,20 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventSystem : MonoBehaviour
+public class GameEventSystem : MonoBehaviour
 {
     
     
     // Start is called before the first frame update
-    public static EventSystem I;
-    
-    private void Awake()
+    public static GameEventSystem I;
+
+    public void Init() 
     {
-        if (I == null)
+
+        //if (I == null)
+
             I = this;
-        else
-            Destroy(gameObject);
+           
+        //if (I == null)
+
+        //    I = this;
     }
+
+    //private void Awake()
+    //{
+        
+    //    if (I == null)
+
+    //        I = this;
+        
+    //}
     public Action<Vector3,int> OnCoinCollected;
     public Action<Vector3> OnPlayerDead;
     void Start()

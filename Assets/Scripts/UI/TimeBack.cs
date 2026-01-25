@@ -26,16 +26,16 @@ public class TimeBack : MonoBehaviour
     }
     void Record()
     {
-        // ���Ƽ�¼���ȣ�����ֻ��5�룬Լ300֡������ֹ�ڴ����
+        
         if (timeBackData.Count > 300)
         {
-            // ���������һЩ�Ƴ������ݵĴ�������߼�ֹͣ����
+      
         }
 
         timeBackData.Push(new ObjectStage(
             transform.position,
             myRenderer.sprite,
-            transform.localScale.x > 0, // ��������scale���Ƴ���
+            transform.localScale.x > 0, 
             rb2D.velocity
         ));
     }
@@ -50,8 +50,8 @@ public class TimeBack : MonoBehaviour
         {
             currentGhost = Instantiate(ghostPrefab, transform.position, Quaternion.identity);
             ghostRenderer = currentGhost.GetComponent<SpriteRenderer>();
-            Debug.Log("��ʼ���ݣ�����Ψһ��һ�λ��ᣡ");
-            // ��Ҫ��ȷ����Ӱ���˶�ѧ�ģ�������������������ȥ
+           
+          
             var ghostRb = currentGhost.GetComponent<Rigidbody2D>();
             if (ghostRb != null) ghostRb.isKinematic = true;
         }
@@ -62,7 +62,7 @@ public class TimeBack : MonoBehaviour
         {
             ObjectStage stage = timeBackData.Pop();
 
-            // ʹ�������ƶ�����ֱ���޸����꣬��֤��ײ��Ч
+            
             if (ghostRb != null)
             {
                 ghostRb.MovePosition(stage.Position);
@@ -80,11 +80,43 @@ public class TimeBack : MonoBehaviour
             StopRewind();
         }
     }
+    public void ResetTimeBackAfter(float delay)
+{
+    StartCoroutine(ResetAfterDelay(delay));
+
+}
+
+IEnumerator ResetAfterDelay(float delay)
+{
+    yield return new WaitForSeconds(delay);
+    ResetTimeBack();
+}
+    public void ResetTimeBack()
+    {
+        // 停止回溯
+        isRewinding = false;
+
+        // 清空记录
+        timeBackData.Clear();
+
+        // 使用次数还原
+        hasUsed = false;
+
+        // 清理残影
+        if (currentGhost != null)
+        {
+            Destroy(currentGhost);
+            currentGhost = null;
+        }
+
+        Debug.Log("TimeBack reset after death");
+        this.enabled = true;
+    }
     void StopRewind()
     {
         isRewinding = false;
         hasUsed = true;
-        // �����ϣ���ز�����Ӱ��ʧ��ȡ������ע��
+       
         if (currentGhost != null) Destroy(currentGhost); 
     }
     void FixedUpdate()
@@ -95,6 +127,7 @@ public class TimeBack : MonoBehaviour
         }
         else
         {
+
             Record();
         }
         // Update is called once per frame
@@ -106,7 +139,7 @@ public class TimeBack : MonoBehaviour
         if (!hasUsed && Input.GetKeyDown(KeyCode.R))
         {
             StartRewind();
-            Debug.Log("R���Ѱ��£���ǰ��¼֡��:你好 " + timeBackData.Count);
+            Debug.Log("start" + timeBackData.Count);
             
         }
         
@@ -114,7 +147,7 @@ public class TimeBack : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log("�����Ѻľ����������ó���...");
+                Debug.Log("not enough");
             }
         }
     }

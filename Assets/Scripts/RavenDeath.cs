@@ -14,18 +14,18 @@ public class RavenDeath : MonoBehaviour
         startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
         
-        EventSystem.I.OnPlayerDead += Die;
+        GameEventSystem.I.OnPlayerDead += Die;
     }
 
     void OnDestroy()
     {
-        EventSystem.I.OnPlayerDead -= Die;
+        GameEventSystem.I.OnPlayerDead -= Die;
     }
 
     void Die(Vector3 pos)
     {
         if (isDead) return;
-
+        
         isDead = true;
 
         Debug.Log("Raven die");
@@ -52,6 +52,13 @@ public class RavenDeath : MonoBehaviour
 
         Invoke(nameof(HideVisual), 1f);
         Invoke(nameof(Respawn), respawnDelay);
+        TimeBack tb = GetComponent<TimeBack>();
+        if (tb != null)
+        {
+            tb.enabled = false;
+            tb.ResetTimeBackAfter(20f);
+            tb.ResetTimeBack();
+        }
 
     }
     void HideVisual()

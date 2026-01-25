@@ -6,20 +6,20 @@ public class CoinEventDebugListener : MonoBehaviour
     {
         Debug.Log("CoinEventDebugListener START");
 
-        if (EventSystem.I == null)
+        if (GameEventSystem.I == null)
         {
             Debug.LogError("EventSystem.I is NULL in listener");
             return;
         }
 
-        EventSystem.I.OnCoinCollected += OnCoin;
+        GameEventSystem.I.OnCoinCollected += OnCoin;
         Debug.Log("CoinEventDebugListener SUBSCRIBED");
     }
 
     void OnDestroy()
     {
-        if (EventSystem.I != null)
-            EventSystem.I.OnCoinCollected -= OnCoin;
+        if (GameEventSystem.I != null)
+            GameEventSystem.I.OnCoinCollected -= OnCoin;
     }
 
     void OnCoin(Vector3 pos, int value)

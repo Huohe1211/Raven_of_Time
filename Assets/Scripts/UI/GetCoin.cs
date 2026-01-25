@@ -8,22 +8,22 @@ public class GetCoin : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("FXListener OnEnable");
-        if (EventSystem.I != null)
-        {
-            EventSystem.I.OnCoinCollected += PlayFX;
-            Debug.Log("FXListener subscribed");
-        }
-        else
-        {
-            Debug.LogError("FXListener: EventSystem.I is NULL");
-        }
+        //Debug.Log("FXListener OnEnable");
+        //if (GameEventSystem.I != null)
+        //{
+        //    GameEventSystem.I.OnCoinCollected += PlayFX;
+        //    Debug.Log("FXListener subscribed");
+        //}
+       // else
+        //{
+         //  Debug.LogError("FXListener: EventSystem.I is NULL");
+        //}
     }
 
     private void OnDisable()
     {
-        if (EventSystem.I != null)
-            EventSystem.I.OnCoinCollected -= PlayFX;
+        if (GameEventSystem.I != null)
+            GameEventSystem.I.OnCoinCollected -= PlayFX;
     }
 
     void PlayFX(Vector3 pos, int value)
@@ -38,12 +38,17 @@ public class GetCoin : MonoBehaviour
         if (ps != null)
         {
             ps.Play();
+            Debug.Log("FXListener subscribed");
         }
         Destroy(fx, 3f);
     }
     void Start()
     {
-        
+        if (GameEventSystem.I != null)
+        {
+            GameEventSystem.I.OnCoinCollected += PlayFX;
+            Debug.Log("FXListener subscribed");
+        }
     }
 
     // Update is called once per frame

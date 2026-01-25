@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEditor.Search;
 
 public class ScreenFade : MonoBehaviour
 {
@@ -9,7 +10,18 @@ public class ScreenFade : MonoBehaviour
     public float fadeOutTime = 0.4f;
 
     Image img;
-
+    public void Init()
+    {
+        Show();
+    }
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
     void Awake()
     {
         img = GetComponent<Image>();
@@ -18,13 +30,14 @@ public class ScreenFade : MonoBehaviour
 
     void Start()
     {
-        EventSystem.I.OnPlayerDead += PlayFade;
+        Show();
+        GameEventSystem.I.OnPlayerDead += PlayFade;
     }
 
     void OnDestroy()
     {
-        if (EventSystem.I != null)
-            EventSystem.I.OnPlayerDead -= PlayFade;
+        if (GameEventSystem.I != null)
+            GameEventSystem.I.OnPlayerDead -= PlayFade;
         gameObject.SetActive(true);
     }
 
