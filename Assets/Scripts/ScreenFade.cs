@@ -38,7 +38,7 @@ public class ScreenFade : MonoBehaviour
     {
         if (GameEventSystem.I != null)
             GameEventSystem.I.OnPlayerDead -= PlayFade;
-        gameObject.SetActive(true);
+       
     }
 
     void PlayFade(Vector3 pos)

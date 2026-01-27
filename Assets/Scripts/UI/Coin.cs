@@ -5,7 +5,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     private int coinValue = 1;
-    
+    public GameObject nextCoin;
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,7 +15,10 @@ public class Coin : MonoBehaviour
             
                 //[2]Change the value on the coin Pnl.
                 int result = UIMgr.I.ui_PnlX.GetCoinValue()+coinValue;
-            
+            if (nextCoin != null)
+            {
+                nextCoin.SetActive(true);
+            }
             if (GameEventSystem.I != null)
             {
                 GameEventSystem.I.OnCoinCollected?.Invoke(

@@ -40,7 +40,7 @@ public class RavenAction : MonoBehaviour
     }
     void playerJump()
     {
-        
+        float verticalNum = Input.GetAxis("Vertical");
         if (grounded)
         {
             if (Input.GetButton("Jump"))

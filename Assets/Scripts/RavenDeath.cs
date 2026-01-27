@@ -1,7 +1,10 @@
 using UnityEngine;
-
+using System.Collections;
+using DG.Tweening;
 public class RavenDeath : MonoBehaviour
 {
+    SpriteRenderer sr;
+    Color originalColor;
     public float respawnDelay = 2f;
 
     Vector3 startPos;
@@ -9,8 +12,11 @@ public class RavenDeath : MonoBehaviour
     Rigidbody2D rb;
     bool isDead = false;
     public GameObject visualRoot;
+    public GameObject pickupFXPrefab;
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
+        originalColor = sr.color;
         startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
         
@@ -45,7 +51,11 @@ public class RavenDeath : MonoBehaviour
             }
             Destroy(fx, 0.7f);
         }
-
+        GameObject ffx = Instantiate(pickupFXPrefab, transform.position, Quaternion.identity);
+        var pps = ffx.GetComponent<ParticleSystem>();
+       
+            pps.Play();
+        
         // 禁用操作脚本（你自己的）
 
         GetComponent<RavenAction>().enabled = false;
@@ -58,9 +68,24 @@ public class RavenDeath : MonoBehaviour
             tb.enabled = false;
             tb.ResetTimeBackAfter(20f);
             tb.ResetTimeBack();
+
         }
+        StartCoroutine(Flash());
+        IEnumerator Flash()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                sr.color = new Color(1, 1, 1, 0.3f);
+                yield return new WaitForSeconds(0.08f);
+                sr.color = Color.white;
+                yield return new WaitForSeconds(0.05f);
+            }
+            
+        }
+        Camera.main.DOShakePosition(1.5f,0.13f,10);
 
     }
+    
     void HideVisual()
     {
         visualRoot.SetActive(false);
