@@ -82,7 +82,7 @@ public class RavenDeath : MonoBehaviour
             }
             
         }
-        Camera.main.DOShakePosition(1.5f,0.13f,10);
+        Camera.main.DOShakePosition(0.7f,new Vector3(0,0.13f,0),10,0);
 
     }
     

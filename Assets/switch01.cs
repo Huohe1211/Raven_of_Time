@@ -12,6 +12,7 @@ public class switch01 : MonoBehaviour
         {
             elevator.Toggle();
             Debug.Log("Switch activated by F");
+            transform.localScale = new Vector3(transform.localScale.x, (float)(-1), transform.localScale.z);
         }
     }
 
