@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Rock_root : MonoBehaviour
 {
+    private Rigidbody2D rb;
     public GameObject rockHang;   // Ðü¹Ò×´Ì¬
     public GameObject rockFall;   // µôÂä×´Ì¬
 
@@ -25,4 +26,6 @@ public class Rock_root : MonoBehaviour
         rockHang.SetActive(false);
         rockFall.SetActive(true);
     }
+
+
 }
