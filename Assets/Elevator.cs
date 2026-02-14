@@ -5,10 +5,10 @@ public class Elevator : MonoBehaviour
     public Transform topPoint;     // 升到哪里
     public Transform bottomPoint;  // 降到哪里
     public float speed = 2f;
-
+    private Vector3 initialPosition;
     private bool goingUp = false;
     private bool isMoving = false;
-
+    public RavenDeath ravendeath;
     void Update()
     {
         if (!isMoving) return;
@@ -26,8 +26,14 @@ public class Elevator : MonoBehaviour
         {
             isMoving = false;
         }
-    }
+        if(ravendeath.isDead== true)
+        {
+            isMoving=false;
+        }
 
+
+    }
+    
     // 给开关调用的接口
     public void Toggle()
     {
@@ -37,4 +43,5 @@ public class Elevator : MonoBehaviour
         goingUp = distToTop > distToBottom;
         isMoving = true;
     }
+    
 }

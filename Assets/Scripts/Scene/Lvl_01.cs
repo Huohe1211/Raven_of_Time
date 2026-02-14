@@ -5,7 +5,10 @@ using UnityEngine.UIElements;
 
 public class Lvl_01 : MonoBehaviour
 {
-
+    public GameObject coin_00;
+    public GameObject coin_01;
+    public GameObject coin_02;
+    public RavenDeath ravendeath;
     public void Init() 
     {
         Hide();
@@ -31,6 +34,12 @@ public class Lvl_01 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(ravendeath.isDead==true)
+        {
+            coin_00.SetActive(true);
+            coin_01.SetActive(false);
+            coin_02.SetActive(false);
+
+        }
     }
 }

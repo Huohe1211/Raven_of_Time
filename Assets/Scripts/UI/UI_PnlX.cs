@@ -13,7 +13,7 @@ public class UI_PnlX : MonoBehaviour
 {
     public RectTransform pnl_X;
     public TextMeshProUGUI txt_Coin;
-
+    public RavenDeath ravendeath;
 
     public void Init()
     {
@@ -57,6 +57,9 @@ public class UI_PnlX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (ravendeath.isDead==true)
+        {
+            txt_Coin.text = 0.ToString();
+        }
     }
 }

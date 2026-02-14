@@ -806,6 +806,7 @@ Transform:
   - {fileID: 252810626}
   - {fileID: 245403126}
   - {fileID: 1009849052}
+  - {fileID: 2018617549}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -821,6 +822,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001b9eb1e9aa4754699fe83d4e174fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_00: {fileID: 242541544}
+  coin_01: {fileID: 737899051}
+  coin_02: {fileID: 733046443}
+  ravendeath: {fileID: 1195557542}
 --- !u!1 &202063087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1054,7 @@ GameObject:
   - component: {fileID: 242541546}
   - component: {fileID: 242541548}
   - component: {fileID: 242541547}
+  - component: {fileID: 242541549}
   m_Layer: 0
   m_Name: coin_00
   m_TagString: Untagged
@@ -1163,6 +1169,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextCoin: {fileID: 737899051}
+--- !u!114 &242541549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242541544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4364ee0815a66438204440b9b35bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &245403125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2924,6 +2942,7 @@ GameObject:
   - component: {fileID: 733046445}
   - component: {fileID: 733046446}
   - component: {fileID: 733046447}
+  - component: {fileID: 733046448}
   m_Layer: 0
   m_Name: coin_02
   m_TagString: Untagged
@@ -3038,6 +3057,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.63165617, y: 1.0655293}
   m_EdgeRadius: 0
+--- !u!114 &733046448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733046443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4364ee0815a66438204440b9b35bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &737899051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,6 +3081,7 @@ GameObject:
   - component: {fileID: 737899053}
   - component: {fileID: 737899054}
   - component: {fileID: 737899055}
+  - component: {fileID: 737899056}
   m_Layer: 0
   m_Name: coin_01
   m_TagString: Untagged
@@ -3164,6 +3196,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4905839, y: 0.8592613}
   m_EdgeRadius: 0
+--- !u!114 &737899056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737899051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4364ee0815a66438204440b9b35bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &779145166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5119,7 +5163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnDelay: 1.5
+  resetManager: {fileID: 2018617550}
   deathFxPrefab: {fileID: 8087390067962080874, guid: 7ec1f6aef5a47a84a952251bc542ba0c, type: 3}
+  isDead: 0
   visualRoot: {fileID: 1195557533}
   pickupFXPrefab: {fileID: 5931423512269012311, guid: 0ae2bb3857f188248acd5bbc7fe1adb4, type: 3}
   timeManager: {fileID: 1009849053}
@@ -5470,6 +5516,7 @@ GameObject:
   - component: {fileID: 1289223904}
   - component: {fileID: 1289223905}
   - component: {fileID: 1289223906}
+  - component: {fileID: 1289223907}
   m_Layer: 6
   m_Name: elevator
   m_TagString: Untagged
@@ -5585,6 +5632,19 @@ MonoBehaviour:
   topPoint: {fileID: 1332621611}
   bottomPoint: {fileID: 1310265687}
   speed: 2
+  ravendeath: {fileID: 1195557542}
+--- !u!114 &1289223907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289223902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4364ee0815a66438204440b9b35bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1292313069
 GameObject:
   m_ObjectHideFlags: 0
@@ -6747,6 +6807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pnl_X: {fileID: 73338947}
   txt_Coin: {fileID: 152118269}
+  ravendeath: {fileID: 1195557542}
 --- !u!1 &1934699945
 GameObject:
   m_ObjectHideFlags: 0
@@ -6953,6 +7014,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2018617548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018617549}
+  - component: {fileID: 2018617550}
+  m_Layer: 0
+  m_Name: SceneResetMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2018617549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018617548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 173940713}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2018617550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018617548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0faf57c33f3a674ea17ec41fd81d8d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2061144602 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1931091686076624085, guid: c5ce543e94492e445bbc8da5af51ac9e, type: 3}
@@ -7175,6 +7280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2083900103}
   - component: {fileID: 2083900104}
+  - component: {fileID: 2083900105}
   m_Layer: 0
   m_Name: rock
   m_TagString: Rock
@@ -7215,6 +7321,18 @@ MonoBehaviour:
   rockHang: {fileID: 7931422}
   rockFall: {fileID: 1693533749}
   dropDelay: 0.3
+--- !u!114 &2083900105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083900102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4364ee0815a66438204440b9b35bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2096951352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5931423512269012312, guid: 1c25fe2b5805a3d449d413c2a5ca5b5e, type: 3}

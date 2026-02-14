@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    bool initialActiveState;
     private int coinValue = 1;
     public GameObject nextCoin;
+    
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,6 +45,6 @@ public class Coin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

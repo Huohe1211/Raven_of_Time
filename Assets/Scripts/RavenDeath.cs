@@ -6,11 +6,11 @@ public class RavenDeath : MonoBehaviour
     SpriteRenderer sr;
     Color originalColor;
     public float respawnDelay = 2f;
-
+    public SceneResetManager resetManager;
     Vector3 startPos;
     public GameObject deathFxPrefab;
     Rigidbody2D rb;
-    bool isDead = false;
+    public bool isDead = false;
     public GameObject visualRoot;
     public GameObject pickupFXPrefab;
     public TimeManager timeManager;
@@ -84,7 +84,7 @@ public class RavenDeath : MonoBehaviour
             
         }
         Camera.main.DOShakePosition(0.7f,new Vector3(0,0.13f,0),10,0);
-        timeManager.ResetAll();
+        resetManager.ResetScene();
     }
     
     void HideVisual()
