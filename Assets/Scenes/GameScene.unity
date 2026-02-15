@@ -826,6 +826,11 @@ MonoBehaviour:
   coin_01: {fileID: 737899051}
   coin_02: {fileID: 733046443}
   ravendeath: {fileID: 1195557542}
+  rockHang: {fileID: 7931422}
+  rockFall: {fileID: 1693533749}
+  breakGround: {fileID: 202063091}
+  brokenGround: {fileID: 202063089}
+  groundBreak: {fileID: 202063087}
 --- !u!1 &202063087
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,6 +843,7 @@ GameObject:
   - component: {fileID: 202063089}
   - component: {fileID: 202063091}
   - component: {fileID: 202063090}
+  - component: {fileID: 202063092}
   m_Layer: 0
   m_Name: platform_craked_00_state_0
   m_TagString: Ground
@@ -951,6 +957,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brokenSprite: {fileID: 21300000, guid: eaf4e4af93928e0479ca73f2f3ad2b16, type: 3}
+  brokenSprite0: {fileID: 21300000, guid: 26885c23faa500248bfbe1dad8a47319, type: 3}
+  ravenDeath: {fileID: 0}
+--- !u!114 &202063092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202063087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4364ee0815a66438204440b9b35bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &210828074
 GameObject:
   m_ObjectHideFlags: 0
@@ -3863,7 +3883,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12135899, y: -0.116989195}
+  m_Offset: {x: -0.08646643, y: -0.047203958}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3874,7 +3894,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1411607, y: 1.3760217}
+  m_Size: {x: 0.55961967, y: 1.0503584}
   m_EdgeRadius: 0
 --- !u!1 &999378926
 GameObject:

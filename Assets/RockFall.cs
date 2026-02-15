@@ -20,27 +20,12 @@ public class RockFall : MonoBehaviour
             GameObject fx = Instantiate(dustPrefab, transform.position, Quaternion.identity);
             var ps = fx.GetComponent<ParticleSystem>();
             ps.Play();
-            Destroy(gameObject, 3f);
+            gameObject.SetActive(false);
         }
         
         
     }
-    public void SaveInitialState()
-    {
-        initialPosition = transform.position;
-        initialRotation = transform.rotation;
-    }
-
-    public void ResetToInitialState()
-    {
-        transform.position = initialPosition;
-        transform.rotation = initialRotation;
-
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-
-        rb.gravityScale = 0f;  // »Øµ½Ðü¹Ò×´Ì¬
-    }
+    
     void Start()
     {
         

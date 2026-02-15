@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class reset: MonoBehaviour
@@ -21,16 +22,18 @@ public class reset: MonoBehaviour
     public void ResetState()
     {
         gameObject.SetActive(true);
-       
-        transform.position = initialPosition;
-        transform.rotation = initialRotation;
-        gameObject.SetActive(initialActiveState);
-        if (rb != null)
+
+        DOVirtual.DelayedCall(1.4f, () =>
         {
-            rb.velocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-        }
-        
+            transform.position = initialPosition;
+            transform.rotation = initialRotation;
+            gameObject.SetActive(initialActiveState);
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+            }
+        });
 
 
     }
