@@ -14,6 +14,7 @@ public class RavenDeath : MonoBehaviour
     public GameObject visualRoot;
     public GameObject pickupFXPrefab;
     public TimeManager timeManager;
+    public TimeBack timeback;
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -31,6 +32,7 @@ public class RavenDeath : MonoBehaviour
 
     void Die(Vector3 pos)
     {
+        if (GetComponent<TimeBack>().enabled == false) return;
         if (isDead) return;
         
         isDead = true;
@@ -84,7 +86,7 @@ public class RavenDeath : MonoBehaviour
             
         }
         Camera.main.DOShakePosition(0.7f,new Vector3(0,0.13f,0),10,0);
-        resetManager.ResetScene();
+        
     }
     
     void HideVisual()
@@ -108,5 +110,14 @@ public class RavenDeath : MonoBehaviour
         GetComponent<RavenAction>().enabled = true;
 
         isDead = false;
+        resetManager.ResetScene();
+        TimeBack tb = GetComponent<TimeBack>();
+        if (tb != null)
+        {
+            tb.ResetTimeBack();
+
+            // 强制记录当前起点作为第一帧
+            tb.ForceRecordStart();
+        }
     }
 }

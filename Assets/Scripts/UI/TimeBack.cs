@@ -41,6 +41,7 @@ public class TimeBack : MonoBehaviour
     }
     void StartRewind()
     {
+        if (isRewinding) return;
         if (timeBackData.Count == 0) return;
 
         isRewinding = true;
@@ -135,7 +136,8 @@ IEnumerator ResetAfterDelay(float delay)
     }
     void Update()
     {
-        
+        if (isRewinding) return;
+
         if (!hasUsed && Input.GetKeyDown(KeyCode.R))
         {
             StartRewind();
@@ -150,5 +152,16 @@ IEnumerator ResetAfterDelay(float delay)
                 Debug.Log("not enough");
             }
         }
+    }
+    public void ForceRecordStart()
+    {
+        timeBackData.Clear();
+
+        timeBackData.Push(new ObjectStage(
+            transform.position,
+            myRenderer.sprite,
+            transform.localScale.x > 0,
+            Vector2.zero
+        ));
     }
 }
