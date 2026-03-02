@@ -12,10 +12,11 @@ public class RavenAction : MonoBehaviour
     public Transform foot;
     public bool grounded;
     public LayerMask ground;
-    
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         ravenColl =GetComponent<Collider2D>();
         ravenRB=GetComponent<Rigidbody2D>();
     }
@@ -25,7 +26,9 @@ public class RavenAction : MonoBehaviour
     {
         playerMove();
         playerJump();
-        grounded = Physics2D.OverlapCircle(foot.position,0.1f,ground);
+        grounded = Physics2D.OverlapCircle(foot.position,0.1f,ground); 
+        float currentSpeed = Mathf.Abs(ravenRB.velocity.x);
+        anim.SetFloat("speed", Mathf.Lerp(anim.GetFloat("speed"), currentSpeed, 0.2f));
     }
     void playerMove()
     {

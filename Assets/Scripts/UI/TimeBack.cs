@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D.IK;
@@ -16,6 +17,8 @@ public class TimeBack : MonoBehaviour
     private ObjectStage currentTarget;
     private Vector3 startPos;
     private bool hasUsed=false;
+    [SerializeField] private float ghostCooldown;  // 冷却时间
+    private float lastGhostTime = -999f;
     // Start is called before the first frame update
     void Start()
     {
@@ -136,7 +139,18 @@ IEnumerator ResetAfterDelay(float delay)
     }
     void Update()
     {
-        if (isRewinding) return;
+        if (isRewinding)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (Time.time - lastGhostTime >= ghostCooldown)
+                {
+                    SpawnVisualGhost();
+                    lastGhostTime = Time.time;
+                }
+            }
+            return;
+        }
 
         if (!hasUsed && Input.GetKeyDown(KeyCode.R))
         {
@@ -151,6 +165,36 @@ IEnumerator ResetAfterDelay(float delay)
             {
                 Debug.Log("not enough");
             }
+        }
+    }
+    void SpawnVisualGhost()
+    {
+        if (ghostPrefab == null) return;
+        if (currentGhost == null) return;
+        GameObject ghost = Instantiate(
+        ghostPrefab,
+        currentGhost.transform.position,   // ⭐ 用影子位置
+        Quaternion.identity
+    );
+
+        // ⭐ 关闭碰撞
+        Collider2D col = ghost.GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+
+        // ⭐ 关闭刚体
+        Rigidbody2D rb = ghost.GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.simulated = false;
+
+        // ⭐ 淡出
+        SpriteRenderer sr = ghost.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.DOFade(0f, 1.2f).OnComplete(() =>
+            {
+                Destroy(ghost);
+            });
         }
     }
     public void ForceRecordStart()

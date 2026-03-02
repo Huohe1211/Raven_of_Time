@@ -3789,8 +3789,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985552032}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.29, y: -3.88, z: 0}
-  m_LocalScale: {x: -0.8, y: 0.8, z: 1}
+  m_LocalPosition: {x: 11.24, y: -3.88, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1095130113}
@@ -4092,7 +4092,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095130112}
-  m_LocalRotation: {x: -0, y: -0, z: 0.36923882, w: 0.9293346}
+  m_LocalRotation: {x: -0, y: -0, z: 0.45238736, w: 0.89182156}
   m_LocalPosition: {x: -0.08, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 3.8258188, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4168,7 +4168,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 0.81537366
+  m_PointLightOuterRadius: 0.581398
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -5007,6 +5007,7 @@ GameObject:
   - component: {fileID: 1195557540}
   - component: {fileID: 1195557541}
   - component: {fileID: 1195557542}
+  - component: {fileID: 1195557543}
   m_Layer: 0
   m_Name: raven
   m_TagString: Player
@@ -5158,6 +5159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostPrefab: {fileID: 985552032}
+  ghostCooldown: 0.2
 --- !u!114 &1195557541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5190,6 +5192,26 @@ MonoBehaviour:
   pickupFXPrefab: {fileID: 5931423512269012311, guid: 0ae2bb3857f188248acd5bbc7fe1adb4, type: 3}
   timeManager: {fileID: 1009849053}
   timeback: {fileID: 0}
+--- !u!95 &1195557543
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195557533}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 53cdfbb61033e30439fa9335d763eabb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1224946050
 GameObject:
   m_ObjectHideFlags: 0
