@@ -41,7 +41,7 @@ public class ScreenFade : MonoBehaviour
        
     }
 
-    void PlayFade(Vector3 pos)
+    public void PlayFade(Vector3 pos)
     {
         StopAllCoroutines();
         StartCoroutine(FadeRoutine());

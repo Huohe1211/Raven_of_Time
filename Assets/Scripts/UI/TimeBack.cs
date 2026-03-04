@@ -18,23 +18,31 @@ public class TimeBack : MonoBehaviour
     private Vector3 startPos;
     private bool hasUsed=false;
     [SerializeField] private float ghostCooldown;  // 冷却时间
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
     private float lastGhostTime = -999f;
+    private int rewindFrameSkip = 2;  // 2 = 速度减半
+    private int rewindCounter = 0;
+    private bool isPreparingRewind = false;
+    [SerializeField] private float rewindDelay = 3f; // 起手动画时间
+    private Vector3 rewindStartPosition;
+    private Quaternion rewindStartRotation;
+    public GameObject TimeBackPrefab;
+
+    public ScreenFade screenFade;
     // Start is called before the first frame update
     void Start()
     {
-
+        
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
+        
         myRenderer = GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
 
     }
     void Record()
     {
-        
-        if (timeBackData.Count > 300)
-        {
-      
-        }
-
         timeBackData.Push(new ObjectStage(
             transform.position,
             myRenderer.sprite,
@@ -46,22 +54,57 @@ public class TimeBack : MonoBehaviour
     {
         if (isRewinding) return;
         if (timeBackData.Count == 0) return;
+        isPreparingRewind = true;
+        rewindStartPosition = transform.position;
+        rewindStartRotation = transform.rotation;
 
+        transform.position = initialPosition;
+            transform.rotation = initialRotation;
+
+        GameObject fx = Instantiate(TimeBackPrefab, transform.position, Quaternion.identity);
+        var ps = fx.GetComponent<ParticleSystem>();
+        if (ps != null)
+        {
+            ps.Play();
+        }
+        Destroy(fx, 0.7f);
+        screenFade.PlayFade(transform.position);
+        StartCoroutine(BeginRewindAfterDelay());
+        
+    }
+    IEnumerator BeginRewindAfterDelay()
+    {
+
+        // ⭐ 记录按下回溯那一刻的位置
+ 
+        yield return new WaitForSeconds(rewindDelay);
+
+        isPreparingRewind = false;
         isRewinding = true;
 
-        // ���ɲ�Ӱ
+        // ⭐ 在“原始位置”生成影子
         if (ghostPrefab != null)
         {
-            currentGhost = Instantiate(ghostPrefab, transform.position, Quaternion.identity);
+            currentGhost = Instantiate(ghostPrefab, rewindStartPosition, rewindStartRotation);
+
             ghostRenderer = currentGhost.GetComponent<SpriteRenderer>();
-           
-          
-            var ghostRb = currentGhost.GetComponent<Rigidbody2D>();
-            if (ghostRb != null) ghostRb.isKinematic = true;
+            ghostRb = currentGhost.GetComponent<Rigidbody2D>();
+
+            if (ghostRb != null)
+                ghostRb.isKinematic = true;
         }
+
+        // ⭐ 再把本体传送回初始点
+
     }
     void Rewind()
     {
+        rewindCounter++;
+
+        if (rewindCounter < rewindFrameSkip)
+            return;
+
+        rewindCounter = 0;
         if (timeBackData.Count > 0 && currentGhost != null)
         {
             ObjectStage stage = timeBackData.Pop();
@@ -125,13 +168,15 @@ IEnumerator ResetAfterDelay(float delay)
     }
     void FixedUpdate()
     {
+        
         if (isRewinding)
         {
             Rewind();
         }
         else
         {
-
+            if (isPreparingRewind)
+                return;
             Record();
         }
         // Update is called once per frame
@@ -139,6 +184,8 @@ IEnumerator ResetAfterDelay(float delay)
     }
     void Update()
     {
+        if (isPreparingRewind)
+            return;
         if (isRewinding)
         {
             if (Input.GetKeyDown(KeyCode.R))
@@ -156,7 +203,8 @@ IEnumerator ResetAfterDelay(float delay)
         {
             StartRewind();
             Debug.Log("start" + timeBackData.Count);
-            
+        
+
         }
         
         else
@@ -208,4 +256,6 @@ IEnumerator ResetAfterDelay(float delay)
             Vector2.zero
         ));
     }
+    
+
 }

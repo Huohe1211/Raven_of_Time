@@ -2244,7 +2244,7 @@ Camera:
   far clip plane: 50
   field of view: 34
   orthographic: 1
-  orthographic size: 5.34
+  orthographic size: 5.450856
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5160,6 +5160,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghostPrefab: {fileID: 985552032}
   ghostCooldown: 0.2
+  rewindDelay: 3
+  TimeBackPrefab: {fileID: 5931423512269012311, guid: 0ae2bb3857f188248acd5bbc7fe1adb4, type: 3}
+  screenFade: {fileID: 2061144602}
 --- !u!114 &1195557541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5191,7 +5194,7 @@ MonoBehaviour:
   visualRoot: {fileID: 1195557533}
   pickupFXPrefab: {fileID: 5931423512269012311, guid: 0ae2bb3857f188248acd5bbc7fe1adb4, type: 3}
   timeManager: {fileID: 1009849053}
-  timeback: {fileID: 0}
+  timeback: {fileID: 1195557540}
 --- !u!95 &1195557543
 Animator:
   serializedVersion: 4
@@ -5560,6 +5563,7 @@ GameObject:
   - component: {fileID: 1289223905}
   - component: {fileID: 1289223906}
   - component: {fileID: 1289223907}
+  - component: {fileID: 1289223908}
   m_Layer: 6
   m_Name: elevator
   m_TagString: Untagged
@@ -5686,6 +5690,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b4364ee0815a66438204440b9b35bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1289223908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289223902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889fda0366e0d0d489ba89933bf8b557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1292313069
