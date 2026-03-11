@@ -9,7 +9,7 @@ public class Rock_root : MonoBehaviour
 
     public float dropDelay = 0.3f; // ©ия║ясЁы
 
-    private bool hasDropped = false;
+    public bool hasDropped = false;
 
     public void DropRock()
     {

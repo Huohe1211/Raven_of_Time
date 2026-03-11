@@ -12,8 +12,8 @@ public class RockTrigger : MonoBehaviour
         {
 
             rockRoot.DropRock();
-            Destroy(gameObject); // 触发一次就删掉
-            
+            gameObject.SetActive(false);
+
         }
     }
 }

@@ -15,6 +15,8 @@ public class Lvl_01 : MonoBehaviour
     public BreakGround breakGround;
     public SpriteRenderer brokenGround;
     public GameObject groundBreak;
+    public GameObject rockRoot;
+    public Rock_root rock;
     private bool hasReset = false;
     public void Init() 
     {
@@ -56,6 +58,9 @@ public class Lvl_01 : MonoBehaviour
             groundBreak.SetActive(true);
             brokenGround.sprite = breakGround.brokenSprite0;
             });
+            brokenGround.GetComponent<Collider2D>().enabled = true;
+            rockRoot.SetActive(true);
+            rock.hasDropped = false;
         }
 
         if (!ravendeath.isDead)

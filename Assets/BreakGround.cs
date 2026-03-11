@@ -19,11 +19,13 @@ public class BreakGround : MonoBehaviour
         {
             isBroken = true;
             sr.sprite = brokenSprite;
+            GetComponent<Collider2D>().enabled = false;
             Camera.main.DOShakePosition(0.7f, 0.2f, 10, 0);
             // 如果要彻底消失：
             DOVirtual.DelayedCall(2f, () =>
             {
                 gameObject.SetActive(false);
+
             });
 
         }

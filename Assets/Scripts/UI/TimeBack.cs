@@ -28,7 +28,7 @@ public class TimeBack : MonoBehaviour
     private Vector3 rewindStartPosition;
     private Quaternion rewindStartRotation;
     public GameObject TimeBackPrefab;
-
+    public ActiveRecorder activeRecorder;
     public ScreenFade screenFade;
     // Start is called before the first frame update
     void Start()
@@ -81,7 +81,7 @@ public class TimeBack : MonoBehaviour
 
         isPreparingRewind = false;
         isRewinding = true;
-
+        activeRecorder.StartRewind();
         // ⭐ 在“原始位置”生成影子
         if (ghostPrefab != null)
         {
@@ -125,6 +125,7 @@ public class TimeBack : MonoBehaviour
         else
         {
             StopRewind();
+            activeRecorder.StopRewind();
         }
     }
     public void ResetTimeBackAfter(float delay)
